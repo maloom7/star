@@ -1,0 +1,16 @@
+// Showing products to user page:
+- create product model and database 
+- add this code to home controller:  
+
+public function index()
+    {
+        // getting all products data
+        $product=Product::all();
+        return view('home.userpage',compact('product'));
+    }
+
+    - add data base information url to the data {{$product->title}}
+    - to {{-- hide null price discount --}} use thid=s code:
+                   @if($product->discount_price!=null)
+                   @endif
+    /////////////////////////////////////////////////////////////////////////
