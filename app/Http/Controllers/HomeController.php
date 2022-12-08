@@ -101,12 +101,42 @@ class HomeController extends Controller
 
 
             
- }
+    }
 
        else
        
        {
         return redirect('login');
        }
+    }
+
+    // show cart function
+    public function show_cart()
+    {
+        // when clicking the CART without login in
+        if(Auth::id())
+        {
+
+            $id=Auth::user()->id;
+
+            $cart=cart::where('user_id','=',$id)->get();
+            return view('home.showcart',compact('cart'));
+        }
+
+        else
+        {
+            return redirect ('login');
+        }
+
+       
+    }
+// delete a product from the CART
+    public function remove_cart($id)
+    {
+       $cart=cart::find($id);
+       
+       $cart->delete();
+
+       return redirect()->back();
     }
 }
