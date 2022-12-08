@@ -12,6 +12,9 @@ use App\Models\Product;
 
 use App\Models\Cart;
 
+use App\Models\Order;
+
+
 class HomeController extends Controller
 {
     // redirecting to user index
@@ -139,4 +142,70 @@ class HomeController extends Controller
 
        return redirect()->back();
     }
+
+// move cart data to ORDER TABLE
+    public function cash_order()
+    {
+
+        $user=Auth::user();
+
+        $userid=$user->id;
+
+        $data=cart::where('user_id','=',$userid)->get();
+
+        foreach($data as $data)
+        {
+            $order=new order;
+// user information data
+            $order->name=$data->name;
+
+            $order->email=$data->email;
+
+            $order->phone=$data->phone;
+
+            $order->address=$data->address;
+
+            $order->user_id=$data->user_id;
+
+
+
+// product information data
+
+            $order->product_title=$data->product_title;
+
+            $order->price=$data->price;
+
+            $order->quantity=$data->quantity;
+
+            $order->image=$data->image;
+
+            $order->product_id=$data->Product_id;
+
+
+
+            $order->payment_status='cash on delivery';
+            
+            $order->delivery_status='processing';
+
+
+            $order->save();
+
+
+
+
+            $cart_id=$data->id;
+
+            $cart=cart::find($cart_id);
+
+            $cart->delete();
+
+        }
+
+        return redirect()->back()->with('message', 'We have Recieved Your Order. We Will cConnect You Soon...');
+
+
+    }
+
+
+
 }

@@ -49,6 +49,8 @@
         <!-- partial -->
         <div class="main-panel">
             <div class="content-wrapper">
+
+                
                 {{-- show successfully message --}}
                 @if(session()->has('message'))
                 <div class="alert alert-success">
@@ -59,6 +61,9 @@
                 </div>
 
                 @endif 
+
+
+
                 <div class="div_center">
 
                 <h1 class="font_size">Add Product</h1>
