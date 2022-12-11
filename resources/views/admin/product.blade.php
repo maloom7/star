@@ -104,7 +104,7 @@
                             <div class="div_design">
 
                                 <label>Discount Price</label>
-                                <input class="text_color" type="number" name="dis_price" 
+                                <input class="text_color" type="number" name="discount_price" 
                                 placeholder="Write a Discount is app" >
                                 </div>
 

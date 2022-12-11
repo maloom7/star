@@ -87,7 +87,7 @@
                 <th class="th_deg">Action</th>
 
             </tr>
-            <?php $totalprice=0; ?>
+            <?php $totalprice=null; ?>
 
             @foreach ($cart as $cart)
                 

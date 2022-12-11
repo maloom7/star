@@ -60,7 +60,7 @@ class AdminController extends Controller
    
    $product->quantity=$request->quantity;
    
-   $product->discount_price=$request->dis_price;
+   $product->discount_price=$request->discount_price;
    
    $product->category=$request->category;
    
@@ -116,7 +116,7 @@ class AdminController extends Controller
             
             $product->price=$request->price;
             
-            $product->discount_price=$request->dis_price;
+            $product->discount_price=$request->discount_price;
             
             $product->category=$request->category;
             

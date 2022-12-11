@@ -89,7 +89,7 @@
                         <td>{{$product->quantity}}</td>
                         <td>{{$product->category}}</td>
                         <td>{{$product->price}}</td>
-                        <td>{{$product->dis_price}}</td>
+                        <td>{{$product->discount_price}}</td>
                         <td>
                             <img  class="img_size" src="/public/product/{{$product->image}}">
                         </td>
