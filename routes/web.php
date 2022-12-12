@@ -47,6 +47,16 @@ route::get('/update_product/{id}', [AdminController::class,'update_product']);
 
 route::post('/update_product_confirm/{id}', [AdminController::class,'update_product_confirm']);
 
+route::get('/order', [AdminController::class,'order']);
+
+
+
+
+
+
+
+// Home controllers
+
 route::get('/product_details/{id}', [HomeController::class,'product_details']);
 
 route::post('/add_cart/{id}', [HomeController::class,'add_cart']);

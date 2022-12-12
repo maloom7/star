@@ -9,7 +9,7 @@
     .center
     {
         margin: auto;
-        width: 50;
+        width: 100%;
         border: 2px solid white;
         text-align: center;
         margin-top: 40px;
