@@ -148,11 +148,27 @@ class AdminController extends Controller
 
         }
 
+        // showing orders into the admin dashboard
+
         public function order()
         {
             $order=order::all();
 
             return view('admin.order',compact('order'));
+        }
+
+        // showing delivery status
+        public function delivered($id)
+        {
+            $order=order::find($id);
+
+            $order->delivery_status="delivered";
+
+            $order->payment_status='paid';
+
+            $order->save();
+
+            return redirect()->back();
         }
 
 }
