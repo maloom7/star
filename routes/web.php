@@ -27,7 +27,7 @@ Route::middleware([
     })->name('dashboard');
 });
 // Redirecting login page
-route::get('/redirect',[HomeController::class, 'redirect']);
+route::get('/redirect',[HomeController::class, 'redirect'])->middleware('auth','verified');
 
 route::get('/view_category', [AdminController::class,'view_category']);
 
