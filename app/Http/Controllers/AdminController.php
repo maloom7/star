@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Product;
 
 use App\Models\Order;
+use PDF;
 
 
 
@@ -169,6 +170,17 @@ class AdminController extends Controller
             $order->save();
 
             return redirect()->back();
+        }
+
+        // Print PDF
+        public function print_pdf($id)
+        {
+            $order=order::find($id);
+
+            $pdf=PDF::loadView('admin.pdf',compact('order'));
+
+            return $pdf->download('order_details.pdf');
+
         }
 
 }
