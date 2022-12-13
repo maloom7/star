@@ -227,4 +227,19 @@ class AdminController extends Controller
             return redirect()->back();
         }
 
+
+
+        // Searching data for orders
+        public function searchdata(Request $request)
+
+        {
+            $searchText=$request->search;
+     // searching by name or phone or any type
+            $order=order::where('name','LIKE',"%$searchText%")->orWhere
+            ('phone','LIKE',"%$searchText%")->orWhere
+            ('product_title','LIKE',"%$searchText%")->get();
+
+            return view('admin.order',compact('order'));
+        }
+
 }
