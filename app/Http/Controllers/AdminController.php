@@ -9,7 +9,12 @@ use App\Models\Category;
 use App\Models\Product;
 
 use App\Models\Order;
+
 use PDF;
+
+use Notification;
+
+use App\Notifications\SendEmailNotification;
 
 
 
@@ -181,6 +186,45 @@ class AdminController extends Controller
 
             return $pdf->download('order_details.pdf');
 
+        }
+
+        // Send Email notifications
+
+        public function send_email($id)
+        {
+            $order=order::find($id);
+
+            return view('admin.email_info',compact('order'));
+
+
+        }
+
+        // send email to the user
+
+        public function send_user_email(Request $request, $id)
+        {
+            $order=order::find($id);
+// ($details) comes from app\Notifications\SendEmailNotification.php
+            $details = [
+//  not we can send default email body by deleting:$request->body, and add the text in single qutation
+                'greeting' => $request->greeting,
+
+                'firstline' => $request->firstline,
+
+                'body' => $request->body,
+
+                'button' => $request->button,
+
+                'url' => $request->url,
+
+                'lastline' => $request->lastline,
+
+
+            ];
+
+            Notification::send($order,new SendEmailNotification($details));
+
+            return redirect()->back();
         }
 
 }
