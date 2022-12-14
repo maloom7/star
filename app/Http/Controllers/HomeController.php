@@ -317,6 +317,44 @@ class HomeController extends Controller
         return back();
     }
 
+    public function show_order()
+    {
+        // when user click order in the menu without login it direct him to the log in page
+        // and must add Auth; to the packages
+        // view order dashboard for the users to edit or cancel
+
+        if(Auth::id())
+        {
+
+            $user=Auth::user();
+
+            $userid=$user->id;
+
+            $order=order::where('user_id','=',$userid)->get();
+
+            return view('home.order',compact('order'));
+        }
+
+        else
+        {
+            return redirect('login');
+        }
+    }
+
+
+    // Cancels Orders for users
+    public function cancel_order($id)
+    {
+
+        $order=order::find($id);
+
+        $order->delivery_status='You Canceled The Order';
+
+        $order->save();
+
+        return redirect()->back();
+    }
+
 
 
 }
