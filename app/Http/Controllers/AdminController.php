@@ -10,6 +10,8 @@ use App\Models\Product;
 
 use App\Models\Order;
 
+use Illuminate\Support\Facades\Auth;
+
 use PDF;
 
 use Notification;
@@ -22,10 +24,23 @@ class AdminController extends Controller
 {
     public function view_category()
     {
-// showing and sending new category into the table
+        if(Auth::id())
+        {
+            // showing and sending new category into the table
       $data=category::all();  
-        return view('admin.category',compact('data'));
+      return view('admin.category',compact('data'));
+
+        }
+        else
+        {
+            return redirect('login');
+        }
+
     } 
+
+
+
+
 // function of adding category with success message come from category.blade.php
     public function add_category(Request $request)
     {
@@ -117,7 +132,9 @@ class AdminController extends Controller
         }
         public function update_product_confirm(Request $request,$id)
         {
-            $product=product::find($id);
+            if(Auth::id())
+            {
+                $product=product::find($id);
 
             $product->title=$request->title;
             
@@ -132,7 +149,7 @@ class AdminController extends Controller
             $product->quantity=$request->quantity;
             
             $image=$request->image;
-// this if statement give you ability to update data without editting the image..
+               // this if statement give you ability to update data without editting the image..
             if($image)
             {
                 $imagename=time().'.'.$image->getClientOriginalExtension();
@@ -151,6 +168,15 @@ class AdminController extends Controller
             return redirect()->back()->with('message','Product Updated Successfully');
 
 
+
+            }
+
+            else
+            {
+                return redirect('login');
+            }
+
+            
 
         }
 

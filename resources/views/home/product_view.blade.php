@@ -1,15 +1,13 @@
 <section class="product_section layout_padding">
     <div class="container">
        <div class="heading_container heading_center">
-          <h2>
-             Our <span>products</span>
-          </h2>
+          
 
-         
-          <br><br>
+
+
           <div>
 
-            <form action="{{url('product_search')}}" method="GET">
+            <form action="{{url('search_product')}}" method="GET">
 
                @csrf
                
@@ -26,17 +24,16 @@
 
        </div>
 
-       {{-- show successfully message --}}
-       @if(session()->has('message'))
-       <div class="alert alert-success">
-     {{-- add the buttun that hide success message --}}
-           <button type="button" class="close"
-           data-dismiss="alert" aria-hidden="true">x</button>
-          {{session()->get('message')}}
-       </div>
-
-       @endif 
-
+        {{-- show successfully message --}}
+        @if(session()->has('message'))
+        <div class="alert alert-success">
+      {{-- add the buttun that hide success message --}}
+            <button type="button" class="close"
+            data-dismiss="alert" aria-hidden="true">x</button>
+           {{session()->get('message')}}
+        </div>
+ 
+        @endif 
        <div class="row">
 
          {{-- showing multi products to user page --}}

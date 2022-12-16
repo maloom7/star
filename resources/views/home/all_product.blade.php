@@ -21,28 +21,18 @@
       <link href="{{asset('home/css/style.css')}}" rel="stylesheet" />
       <!-- responsive style -->
 <link href="{{asset('home/css/responsive.css')}}" rel="stylesheet" />
-
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.2/jquery.min.js" integrity="sha512-tWHlutFnuG0C6nQRlpvrEhE4QpkG1nn2MOUMWmUeRePl4e3Aki0VB6W1v3oLjFtd0hVOtRQ9PHpSfN6u6/QXkQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
    </head>
    <body>
       <div class="hero_area">
         @include('home.header')
          
-         {{-- slider section --}}
-        @include('home.slider')
-         {{-- end slider section --}}
-      </div>
-      <!-- why section -->
-      @include('home.why')
-      <!-- end why section -->
+        
       
-      <!-- arrival section -->
-      @include('home.new_arival')
-
-      <!-- end arrival section -->
+     
       
       <!-- product section -->
-      @include('home.product')
+      @include('home.product_view')
 
 
 
@@ -148,21 +138,7 @@
 
       <!-- end product section -->
 
-      <!-- subscribe section -->
-      @include('home.subscribe')
-
-      <!-- end subscribe section -->
-      @include('home.subscribe')
-
-      <!-- client section -->
-      @include('home.client')
-
-      <!-- end client section -->
-
-      <!-- footer start -->
-      @include('home.footer')
-
-      <!-- footer end -->
+      
 
       <div class="cpy_">
          <p class="mx-auto">© 2021 All Rights Reserved By <a href="https://html.design/">Free Html Templates</a><br>

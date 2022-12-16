@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <base href="/public/home">
+    {{-- <base href="/public/home"> --}}
     <!-- Required meta tags -->
     @include ('admin.css')
     <style type="text/css">
