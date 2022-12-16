@@ -18,6 +18,12 @@ use Session;
 
 use Stripe;
 
+use App\Models\Comment;
+
+use App\Models\Reply;
+
+
+
 
 
 class HomeController extends Controller
@@ -27,7 +33,12 @@ class HomeController extends Controller
     {
         // getting all products data and yoc can get some data by changing (all) with paginate(numbers of products)
         $product=Product::paginate(10);
-        return view('home.userpage',compact('product'));
+
+        $comment=comment::orderby('id','desc')->get();
+
+        $reply=reply::all();
+        
+        return view('home.userpage',compact('product','comment','reply'));
     }
 
 
@@ -72,7 +83,12 @@ class HomeController extends Controller
             
             {
                 $product=Product::paginate(10);
-                return view('home.userpage',compact('product'));
+
+                $comment=comment::orderby('id','desc')->get();
+
+                $reply=reply::all();
+
+                return view('home.userpage',compact('product','comment','reply'));
             }
 
         }
@@ -353,6 +369,85 @@ class HomeController extends Controller
         $order->save();
 
         return redirect()->back();
+    }
+
+    // Comments and Replies
+
+    public function add_comment(Request $request)
+    {
+        if(Auth::id())
+        {
+            $comment=new comment;
+
+            $comment->name=Auth::user()->name;
+
+            $comment->user_id=Auth::user()->id;
+//  next comment word comes from nam:"comment" from the comment part in user.php of home
+            $comment->comment=$request->comment;
+            
+            $comment->save();
+
+            return redirect()->back();
+
+        }
+
+        else
+        {
+          
+            
+            return redirect('login');
+        }
+    }
+
+    // Add reply on the comments
+    public function add_reply(Request $request)
+    {
+        if(Auth::id())
+        {
+
+            $reply=new reply;
+
+            $reply->name=Auth::user()->name;
+
+            $reply->user_id=Auth::user()->id;
+
+            $reply->comment_id=$request->commentId;
+
+            $reply->reply=$request->reply;
+
+            $reply->save();
+
+            return redirect()->back();
+
+
+
+        }
+
+        else
+        {
+
+            return redirect('login');
+        }
+
+
+    }
+
+
+
+
+    // product searching
+    public function product_search(Request $request)
+    {
+        $comment=comment::orderby('id','desc')->get();
+
+        $reply=reply::all();
+
+        $search_text=$request->search;
+
+        $product=product::where('title','LIKE',"%$search_text%")->orWhere
+        ('category','LIKE',"$search_text")->paginate(10);
+
+        return view('home.userpage',compact('product','comment','reply'));
     }
 
 
