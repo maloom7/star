@@ -22,6 +22,10 @@ use App\Models\Comment;
 
 use App\Models\Reply;
 
+use App\Models\Contact;
+
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 
 
@@ -141,7 +145,9 @@ class HomeController extends Controller
 
                 $cart->save();
 
-                return redirect()->back()->with('message','Product Added Successfully');
+                Alert::success('Product Added Successfully','We have added product to the cart');
+
+                return redirect()->back();
 
 
 
@@ -188,7 +194,9 @@ class HomeController extends Controller
 
             $cart->save();
 
-            return redirect()->back()->with('message','Product Added Successfully');
+            Alert::success('Product Added Successfully','We have added product to the cart');
+
+            return redirect()->back();
 
             }
 
@@ -230,7 +238,9 @@ class HomeController extends Controller
 
             $cart->save();
 
-            return redirect()->back()->with('message','Product Added Successfully');
+            Alert::success('Product Added Successfully','We have added product to the cart');
+
+            return redirect()->back();
 
 
 
@@ -271,6 +281,7 @@ class HomeController extends Controller
        
        $cart->delete();
 
+       Alert::success('Product Deleted Successfully','We have deleted product from the cart');
        return redirect()->back();
     }
 
