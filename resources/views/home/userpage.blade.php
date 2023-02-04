@@ -129,7 +129,7 @@
 
             <br>
       
-            <button type="submit" class="btn btn-warning" >Reply</button>
+            <button type="submit" class="btn btn-warning" >Replay</button>
 
             <a href="javascript::void(0);" class="btn" onClick="reply_close(this)">Close</a>
 
